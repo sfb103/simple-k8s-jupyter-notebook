@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: jupyter-bentlesf 
+  name: jupyter-octave 
   labels:
-    name: jupyter-bentlesf 
+    name: jupyter-octave 
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: jupyter-bentlesf 
+      name: jupyter-octave 
   template:
     metadata:
       labels:
-        name: jupyter-bentlesf 
+        name: jupyter-octave 
     spec:
       volumes:
       - hostPath:
-          path: /volumes/jupyter-home/bentlesf
+          path: /volumes/jupyter-home/octave
         name: home 
       containers:
-      - name: jupyter-bentlesf 
+      - name: jupyter-octave 
         image: jupyter/octave-notebook
         imagePullPolicy: IfNotPresent
         livenessProbe:
@@ -34,9 +34,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: jupyter-bentlesf 
+  name: jupyter-octave 
   labels:
-    name: jupyter-bentlesf 
+    name: jupyter-octave 
 spec:
   ports:
   - name: webport 
@@ -45,6 +45,6 @@ spec:
     targetPort: 8888 
     nodePort: 8888 
   selector:
-    name: jupyter-bentlesf 
+    name: jupyter-octave 
   type: NodePort
 
