@@ -12,6 +12,6 @@ Then, to run this deployment on the kubernetes cluster, simply:
 ```
 kubectl apply -f jupyter.yaml
 ```
-**Note**, The jupyter notebook deployment currently assumes it's persistent data is kept in the ```/volumes/jupyter-home/octave``` host directory.  And the web-client is currently explosed through a cluster ```nodePort: 8888```
+**Note**, The jupyter notebook deployment currently assumes it's persistent data is kept in the ```/volumes/jupyter-home/octave``` host directory.  And the web frontend is currently explosed through a cluster ```nodePort: 8888```
 
 Once the jupyter-octave pod is ready on the cluster, you can navigate to the web-client using the node-port specified above. Once the web-client is accessed, follow the documentation on the jupyter and octave web pages for more instructions.
