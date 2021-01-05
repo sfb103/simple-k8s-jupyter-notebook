@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jupyter-bentlesf 
+  labels:
+    name: jupyter-bentlesf 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: jupyter-bentlesf 
+  template:
+    metadata:
+      labels:
+        name: jupyter-bentlesf 
+    spec:
+      volumes:
+      - hostPath:
+          path: /volumes/jupyter-home/bentlesf
+        name: home 
+      containers:
+      - name: jupyter-bentlesf 
+        image: jupyter/octave-notebook
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          tcpSocket:
+            port: 8888 
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        volumeMounts:
+        - mountPath: /home/jovyan
+          name: home 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jupyter-bentlesf 
+  labels:
+    name: jupyter-bentlesf 
+spec:
+  ports:
+  - name: webport 
+    protocol: "TCP"
+    port: 8888 
+    targetPort: 8888 
+    nodePort: 8888 
+  selector:
+    name: jupyter-bentlesf 
+  type: NodePort
+
